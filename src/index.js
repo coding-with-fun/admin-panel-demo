@@ -3,10 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ErrorProvider } from "./context/ErrorContext";
+import WithAxios from "./utils/WithAxios";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <ErrorProvider>
+            <WithAxios>
+                <App />
+            </WithAxios>
+        </ErrorProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

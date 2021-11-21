@@ -4,22 +4,14 @@ axios.interceptors.request.use((config) => {
     return config;
 });
 
-axios.interceptors.response.use(
-    (response) => {
-        // ! TODO: Comment it for successful response
-        // throw response.data;
-
-        // * Change the response according to the response from server.
-        if ([200, 201].includes(response.status)) {
-            return response.data;
-        } else {
-            throw response.data;
-        }
-    },
-    (error) => {
-        console.log(error.response);
+axios.interceptors.response.use((response) => {
+    // * Change the response according to the response from server.
+    if ([200, 201].includes(response.status)) {
+        return response.data;
+    } else {
+        throw response;
     }
-);
+});
 
 export const request = async ({
     url,
@@ -28,8 +20,9 @@ export const request = async ({
     data,
     headers,
 }) => {
+    const BASE_URL = "https://jsonplaceholder.typicode.com";
     const res = await axios.request({
-        url,
+        url: BASE_URL + url,
         method,
         params,
         data,

@@ -9,13 +9,13 @@ const Base = () => {
     const fetchData = async () => {
         // GET request
         const responseOne = await request({
-            url: "https://jsonplaceholder.typicode.com/posts",
+            url: "/posts",
         });
         console.log(responseOne);
 
         // POST request
         const responseTwo = await request({
-            url: "https://jsonplaceholder.typicode.com/posts",
+            url: "/posts",
             method: "POST",
             data: {
                 title: "foo",
