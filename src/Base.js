@@ -3,14 +3,19 @@ import { request } from "./shared/RequestWrapper";
 
 const Base = () => {
     useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
         // GET request
-        request({
+        const responseOne = await request({
             url: "https://jsonplaceholder.typicode.com/posts",
         });
+        console.log(responseOne);
 
         // POST request
-        request({
-            url: "https://jsonplaceholder.typicode.com/post",
+        const responseTwo = await request({
+            url: "https://jsonplaceholder.typicode.com/posts",
             method: "POST",
             data: {
                 title: "foo",
@@ -21,7 +26,9 @@ const Base = () => {
                 "Content-type": "application/json; charset=UTF-8",
             },
         });
-    }, []);
+        console.log(responseTwo);
+    };
+
     return (
         <div>
             <h1>Base</h1>
